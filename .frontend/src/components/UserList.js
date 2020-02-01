@@ -50,6 +50,7 @@ class UserList extends Component {
     return (
       <UserListContainer>
         <h1> Registered Users: </h1>
+        {console.log(this.props)}
         <UserCardContainer>
           {this.props.users.map(user => (
             <UserCard key={user.id}>
@@ -63,8 +64,12 @@ class UserList extends Component {
 }
 const mapStateToProps = state => {
   return {
+    username: state.username,
     users: state.users,
-    usertransaction: state.usertransaction
+    userid: state.userid,
+    logintransaction: state.logintransaction,
+    usertransaction: state.usertransaction,
+    token: state.token
   };
 };
 export default connect(mapStateToProps, { displayUserList })(UserList);

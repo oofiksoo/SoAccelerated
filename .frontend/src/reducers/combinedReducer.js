@@ -3,7 +3,9 @@ import * as types from "../actions/actionTypes";
 export const initialState = {
     username: "",
     password: "",
+    userid: [],
     users: [],
+    error: "",
     logintransaction: false,
     usertransaction: false,
     token: ""
@@ -25,7 +27,9 @@ export const combinedReducer = (state = initialState, action) => {
                 ...state,
                 logintransaction: true,
                 error: "",
-                token: [...action.payload]
+                token: action.payload.token,
+                username: action.payload.username,
+                userid: action.payload.userid
             };
 
         case types.LOGIN_FAILED:

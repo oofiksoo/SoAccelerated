@@ -8,24 +8,27 @@ export const userSignup = (userData, history) => dispatch => {
         .then(res => {
             dispatch({ type: types.REGISTER });
 
-            history.goback();
+            history.push("/login");
         })
         .catch(err => console.log(err));
 };
 
 export const userLogin = (loginData, history) => dispatch => {
+    dispatch({ type: types.LOGIN });
     axiosWithAuth()
         .post("/auth/login", loginData)
         .then(res => {
             dispatch({
-                type: types.LOGIN,
-                payload: res.data.token
+                type: types.LOGIN_SUCCESS,
+                payload: res.data
             });
             localStorage.setItem("Authorization", res.data.token);
-            console.log(res.data.token);
+            console.log(res.data);
             history.push("/dashboard");
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            dispatch({ type: types.LOGIN_FAILED, payload: err.res });
+        });
 };
 
 export const userLogout = () => dispatch => {
@@ -33,11 +36,14 @@ export const userLogout = () => dispatch => {
     Axios.get("http://localhost:5000/api/auth/logout")
         .then(
             res =>
-            dispatch({ type: types.LOGOUT }) &
-            console.log("attempt to delete token") &
-            localStorage.removeItem("Authorization")
+            dispatch({ type: types.LOGOUT, payload: "" }) &
+            console.log(
+                "Attempt to delete token:",
+                localStorage.getItem("Authorization")
+            )
         )
-        .catch(err => console.log(err));
+
+    .catch(err => console.log(err));
 };
 
 export const displayUserList = () => dispatch => {

@@ -7,21 +7,22 @@ const SideBarCont = Styled.div`
 display:flex;
 flex-direction:column;
 align-items:center;
-background-color:#0099cc;
+background-color:black;
 border-radius:0 0 5rem 0;
-padding: 10% 0%;
-height:80vh;
+padding: 10%;
+height:85vh;
+width:200px;
 `;
 
 const SideBarItem = Styled.div`
 display:flex;
   justify-content:center;
   align-items:center;
-  padding: 0.3rem;
+  padding: 1rem;
   margin:.3rem;
   height: .6rem;
   width: 70%;
-  color: #cc3300;
+  color: black;
   border 2px solid white;
   border-radius:.5rem;
   white-space:nowrap;

@@ -10,7 +10,7 @@ align-self:center;
 justify-content:center;
 flex-direction:column;
 margin:5% auto;
-background-color:#0099cc;
+background-color:black;
 padding:1%;
 width:60%;
 color:white;
@@ -18,6 +18,9 @@ padding:1%;
 border-radius:20px;
 height:70vh;
 h1{
+  text-align:center;
+}
+h2{
   text-align:center;
 }
 `;
@@ -44,11 +47,10 @@ Form{
   display:flex;
   align-self:center;
   justify-content:center;
-  padding:2%;
+  padding:4%;
   margin:5%;
   height:20%;
-  width:30%;
-  background-color:#0099cc;
+  background-color:black;
   color:white;
   border:2px solid white;
   border-radius:5px;
@@ -66,10 +68,11 @@ const Login = ({ errors, touched, values, userLogin, history }) => {
   return (
     <LoginCont>
       <h1>Welcome To SoAccellerated!</h1>
+      <h2>Please Sign In To Continue:</h2>
       <LoginContainer>
         <Form className="login-form" onSubmit={handleLoginSubmit}>
           <label className="login-label">
-            <p>USERNAME: </p>
+            <p> Username: </p>
           </label>
           <Field
             className="login-field"
@@ -81,7 +84,7 @@ const Login = ({ errors, touched, values, userLogin, history }) => {
             <span className="error"> {errors.username} </span>
           )}
           <label className="login-label">
-            <p>PASSWORD: </p>
+            <p> Password: </p>
           </label>
           <Field
             className="login-field"
