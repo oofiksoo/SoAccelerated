@@ -1,0 +1,35 @@
+{
+    "name": "so_accelerated_node_db",
+    "version": "1.0.0",
+    "description": "SoAccelerated",
+    "main": "index.js",
+    "scripts": {
+        "server": "nodemon index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/oofiksoo/SoAccelerated"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/oofiksoo/SoAccelerated"
+    },
+    "homepage": "https://github.com/oofiksoo/SoAccelerated.git",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "connect-session-knex": "^1.5.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "express-session": "^1.17.0",
+        "helmet": "^3.21.2",
+        "jsonwebtoken": "^8.5.1",
+        "knex": "^0.20.1",
+        "knex-cleaner": "^1.3.0",
+        "sqlite3": "^4.1.0"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.4"
+    }
+}
