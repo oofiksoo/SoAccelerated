@@ -37,18 +37,18 @@ export const userLogout = () => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const displayUserList = () => dispatch => {
-    dispatch({ type: types.GET_USERS });
+export const getProjectList = () => dispatch => {
+    dispatch({ type: types.GET_PROJECTS });
     axiosWithAuth()
-        .get("/users")
+        .get("/projects")
         .then(
             res =>
             dispatch({
-                type: types.GET_USERS_SUCCESS,
+                type: types.GET_PROJECTS_SUCCESS,
                 payload: res.data
             }) & console.log(res.data)
         )
         .catch(err => {
-            dispatch({ type: types.GET_USERS_FAILED, payload: err.res });
+            dispatch({ type: types.GET_PROJECTS_FAILED, payload: err.res });
         });
 };

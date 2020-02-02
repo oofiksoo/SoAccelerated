@@ -66,10 +66,10 @@ function NavBar(props) {
 const mapStateToProps = state => {
   return {
     username: state.username,
-    users: state.users,
+    projects: state.projects,
     userid: state.userid,
     logintransaction: false,
-    usertransaction: false,
+    projecttransaction: false,
     token: state.token
   };
 };

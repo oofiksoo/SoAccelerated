@@ -54,7 +54,7 @@ function SideBar() {
         <SideBarAcnt />
       </AcntCont>
       <SideBarItem>
-        <NavLink to="">
+        <NavLink to="/projects">
           <p> My Projects </p>
         </NavLink>
       </SideBarItem>

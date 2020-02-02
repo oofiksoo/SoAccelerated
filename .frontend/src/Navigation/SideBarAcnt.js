@@ -72,10 +72,10 @@ function SideBarAcnt(props) {
 const mapStateToProps = state => {
   return {
     username: state.username,
-    users: state.users,
+    projects: state.users,
     userid: state.userid,
     logintransaction: state.logintransaction,
-    usertransaction: state.usertransaction,
+    projecttransaction: state.projecttransaction,
     token: state.token
   };
 };

@@ -4,10 +4,10 @@ export const initialState = {
     username: "",
     password: "",
     userid: [],
-    users: [],
+    projects: [],
     error: "",
     logintransaction: false,
-    usertransaction: false,
+    projecttransaction: false,
     token: ""
 };
 
@@ -40,29 +40,29 @@ export const combinedReducer = (state = initialState, action) => {
 
                 error: action.payload
             };
-        case types.GET_USERS:
+        case types.GET_PROJECTS:
             return {
                 ...state,
-                usertransaction: false,
-                users: [],
+                projecttransaction: false,
+                projects: [],
                 error: ""
             };
-        case types.GET_USERS_SUCCESS:
+        case types.GET_PROJECTS_SUCCESS:
             return {
                 ...state,
 
-                usertransaction: true,
+                projecttransaction: true,
 
                 error: "",
 
-                users: [...state.users, ...action.payload]
+                projects: [...state.projects, ...action.payload]
             };
 
-        case types.GET_USERS_FAILED:
+        case types.GET_PROJECTS_FAILED:
             return {
                 ...state,
 
-                usertransaction: false,
+                projecttransaction: false,
 
                 error: action.payload
             };

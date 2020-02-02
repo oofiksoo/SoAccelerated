@@ -56,7 +56,7 @@ Form{
   border-radius:5px;
   :hover{
   background-color:white;
-  color:#0099cc;
+  color:black;
   }
 }
 `;

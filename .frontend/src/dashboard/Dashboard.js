@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import SideBar from "../Navigation/SideBar";
 import Styled from "styled-components";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import ProjectsList from "./ProjectsList";
 const SideBarCont = Styled.div`
 padding:0.003rem;
 width:10%;
@@ -22,7 +23,10 @@ function DashBoard(props) {
         <SideBarCont>
           <SideBar />
         </SideBarCont>
-        <ContentContainer>{console.log(props)}</ContentContainer>
+        <ContentContainer>
+          <Route path="/projects" component={ProjectsList} />
+          {console.log(props)}
+        </ContentContainer>
       </BodyContainer>
     </Router>
   );
@@ -30,10 +34,10 @@ function DashBoard(props) {
 const mapStateToProps = state => {
   return {
     username: state.username,
-    users: state.users,
+    projects: state.projects,
     userid: state.userid,
     logintransaction: state.logintransaction,
-    usertransaction: state.usertransaction,
+    projecttransaction: state.projecttransaction,
     token: state.token
   };
 };
