@@ -1,24 +1,33 @@
 exports.up = function(knex) {
     return knex.schema
+        .createTable("users", table => {
+            table.increments();
 
+            table
+                .string("username")
+
+            .notNullable();
+
+            table.string("password");
+        })
         .createTable("projects", table => {
-        table.increments();
+            table.increments();
 
-        table
-            .string("project_name")
+            table
+                .string("project_name")
 
-        .notNullable();
+            .notNullable();
 
-        table.string("project_description");
+            table.string("project_description");
 
-        table
+            table
 
-            .boolean("completed")
+                .boolean("completed")
 
-        .notNullable()
+            .notNullable()
 
-        .defaultTo(0);
-    })
+            .defaultTo(0);
+        })
 
     .createTable("tasks", table => {
         table.increments();
@@ -109,7 +118,9 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return knex.schema
 
-        .dropTableIfExists("projects_resources")
+        .dropTableIfExists("users")
+
+    .dropTableIfExists("projects_resources")
 
     .dropTableIfExists("resources")
 

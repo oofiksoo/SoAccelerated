@@ -21,15 +21,7 @@ img{
 a{
     text-decoration:none;
     color:white;
-}
-p{
-  display:flex;
-  align-items:center;
-  padding:5px;
-    font-size:.56rem;
-    border:2px solid white;
-    border-radius: 1rem;
-    
+}   
 }
 `;
 const AcntNav = Styled.div`
@@ -37,27 +29,43 @@ display:flex;
 `;
 const AcntItem = Styled.div`
 margin:.5rem;
+cursor:pointer;
+display:flex;
+p{
+  align-items:center;
+  padding:5px 20px;
+  font-size:.56rem;
+  border:2px solid white;
+  border-radius: 1rem;
+  :hover{
+    background-color:white;
+    color:black;
+    p{
+      color:black;
+    }
+  }
+}
 `;
 
 function SideBarAcnt(props) {
   return (
     <AcntCont>
       <h3> Hello, {props.username} </h3>
-      <img src={logo} alt="AcntImg" height="100px" width="100px" />
+      <img src={logo} alt="AcntImg" height="150px" width="150px" />
       <AcntNav>
         <AcntItem>
           <NavLink exact to="/Profile">
-            <p> Profile </p>{" "}
-          </NavLink>{" "}
-        </AcntItem>{" "}
+            <p> Profile </p>
+          </NavLink>
+        </AcntItem>
         <AcntItem>
           <NavLink to="/Settings">
-            <p> Settings </p>{" "}
-          </NavLink>{" "}
-        </AcntItem>{" "}
-      </AcntNav>{" "}
-      <Route exact path="/Profile" /> <Route path="/Profile" />
-      <Route path="/Settings" /> <Route path="/Settings" />
+            <p> Settings </p>
+          </NavLink>
+        </AcntItem>
+      </AcntNav>
+      <Route exact path="/Profile" />
+      <Route path="/Settings" />
     </AcntCont>
   );
 }

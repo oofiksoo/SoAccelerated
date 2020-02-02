@@ -61,7 +61,7 @@ router.get("/logout", (req, res) => {
     if (req.session) {
         req.session.destroy(err => {
             if (err) {
-                res.status(500).json({ Error: "error" });
+                res.status(500).json({ Error: err });
             } else {
                 res.status(200).json({ logged: "out" });
             }

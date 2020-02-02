@@ -72,7 +72,7 @@ const SignUp = ({ errors, touched, values, userSignup, history }) => {
 
   return (
     <RegCont>
-      <h1>Welcome To SoAccellerated!</h1>
+      <h1>Welcome To SoAccelerated!</h1>
       <h2>Please Create An Account To Continue:</h2>
       <RegisterContainer>
         <Form className="signup-form" onSubmit={handleSignupSubmit}>

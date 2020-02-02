@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import Logo from "./logo.js";
 import { userLogout } from "../actions/actionCreators";
 const NavBarContainer = Styled.div`
@@ -20,7 +20,15 @@ const NavBarItem = Styled.div`
   width:6%;
   color: black;
   border: 2px solid white;
+  cursor:pointer;
   border-radius:.5rem;
+  :hover{
+    background-color:white;
+    color:black;
+    p{
+      color:black;
+    }
+    }
   p{
     text-decoration:none;
     color:white;
@@ -37,11 +45,6 @@ function NavBar(props) {
     <NavBarContainer>
       <Logo />
       <NavBarItem>
-        <Link to="/">
-          <p>Home</p>
-        </Link>
-      </NavBarItem>
-      <NavBarItem>
         <Link to="/Register">
           <p>Register</p>
         </Link>
@@ -52,10 +55,11 @@ function NavBar(props) {
         </Link>
       </NavBarItem>
       <NavBarItem>
-        <Link to="/" onClick={() => props.userLogout()}>
+        <Link to="/logout" onClick={() => props.userLogout()}>
           <p>Log Out</p>
         </Link>
       </NavBarItem>
+      <Route exact path="/" />
     </NavBarContainer>
   );
 }

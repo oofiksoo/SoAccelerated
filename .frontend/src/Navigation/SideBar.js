@@ -26,10 +26,18 @@ display:flex;
   border 2px solid white;
   border-radius:.5rem;
   white-space:nowrap;
+  cursor:pointer;
+  :hover{
+    background-color:white;
+    color:black;
+    p{
+      color:black;
+    }
+    }
   p{
     text-decoration:none;
     color:white;
-    font-size:.7rem;
+    font-size:1rem;
   }
   a{
     text-decoration:none;
@@ -44,35 +52,33 @@ function SideBar() {
     <SideBarCont>
       <AcntCont>
         <SideBarAcnt />
-      </AcntCont>{" "}
-      <SideBarItem>
-        <NavLink exact to="/">
-          <p> Home </p>{" "}
-        </NavLink>{" "}
-      </SideBarItem>{" "}
+      </AcntCont>
       <SideBarItem>
         <NavLink to="">
-          <p> My Projects </p>{" "}
-        </NavLink>{" "}
-      </SideBarItem>{" "}
+          <p> My Projects </p>
+        </NavLink>
+      </SideBarItem>
       <SideBarItem>
         <NavLink to="">
-          <p> My Opportunities </p>{" "}
-        </NavLink>{" "}
-      </SideBarItem>{" "}
+          <p> My Opportunities </p>
+        </NavLink>
+      </SideBarItem>
       <SideBarItem>
         <NavLink to="/">
-          <p> My Accelleration </p>{" "}
-        </NavLink>{" "}
-      </SideBarItem>{" "}
+          <p> My Accelleration </p>
+        </NavLink>
+      </SideBarItem>
       <SideBarItem>
         <NavLink to="/">
-          <p> More </p>{" "}
-        </NavLink>{" "}
-      </SideBarItem>{" "}
-      <Route exact path="/" /> <Route path="/symptoms" />
-      <Route path="/strains" /> <Route path="/recomendations" />
-      <Route path="/DisplayDispensary" />
+          <p> More </p>
+        </NavLink>
+      </SideBarItem>
+      <SideBarItem>
+        <NavLink exact to="/dashboard">
+          <p> Home </p>
+        </NavLink>
+      </SideBarItem>
+      <Route exact path="/" />
     </SideBarCont>
   );
 }

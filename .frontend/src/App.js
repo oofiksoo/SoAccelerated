@@ -10,10 +10,10 @@ function App(props) {
   return (
     <Router>
       <NavBar />
-      <Route exact path="/" component={LogIn} />
+      <Route exact path="/" />
       <Route path="/login" component={LogIn} />
       <Route path="/register" component={SignUp} />
-      <PrivateRoute path="/dashboard" component={DashBoard} props={props} />
+      <PrivateRoute path="/dashboard" component={DashBoard} />
     </Router>
   );
 }

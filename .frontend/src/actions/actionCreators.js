@@ -7,7 +7,6 @@ export const userSignup = (userData, history) => dispatch => {
         .post("/auth/register", userData)
         .then(res => {
             dispatch({ type: types.REGISTER });
-
             history.push("/login");
         })
         .catch(err => console.log(err));
@@ -23,7 +22,6 @@ export const userLogin = (loginData, history) => dispatch => {
                 payload: res.data
             });
             localStorage.setItem("Authorization", res.data.token);
-            console.log(res.data);
             history.push("/dashboard");
         })
         .catch(err => {
@@ -34,14 +32,7 @@ export const userLogin = (loginData, history) => dispatch => {
 export const userLogout = () => dispatch => {
     localStorage.removeItem("Authorization");
     Axios.get("http://localhost:5000/api/auth/logout")
-        .then(
-            res =>
-            dispatch({ type: types.LOGOUT, payload: "" }) &
-            console.log(
-                "Attempt to delete token:",
-                localStorage.getItem("Authorization")
-            )
-        )
+        .then(res => dispatch({ type: types.LOGOUT, payload: "" }))
 
     .catch(err => console.log(err));
 };
