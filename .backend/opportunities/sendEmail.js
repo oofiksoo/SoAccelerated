@@ -63,4 +63,4 @@ function deleteEmail(req, res, next) {
             );
     });
 }
-module.exports { newEmail, updateEmail, deleteEmail }
+module.exports = { newEmail, updateEmail, deleteEmail };
