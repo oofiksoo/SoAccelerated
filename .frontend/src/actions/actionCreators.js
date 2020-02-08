@@ -52,3 +52,28 @@ export const getProjectList = () => dispatch => {
             dispatch({ type: types.GET_PROJECTS_FAILED, payload: err.res });
         });
 };
+export const getProfile = id => dispatch => {
+    dispatch({ type: types.GET_PROFILE });
+    console.log("Get Profile");
+    axiosWithAuth()
+        .get(`/users/${id}`)
+        .then(
+            res =>
+            dispatch({
+                type: types.GET_PROFILE_SUCCESS,
+                payload: res.data
+            }) & console.log("Profile Data:", res.data)
+        )
+        .catch(err => {
+            dispatch({ type: types.GET_PROFILE_FAILED, payload: err.res });
+        });
+};
+export const editProfile = (id, profileData, history) => dispatch => {
+    axiosWithAuth()
+        .put(`/users/${id}`, profileData)
+        .then(res => {
+            dispatch({ type: types.EDIT_PROFILE });
+            history.push("/profile");
+        })
+        .catch(err => console.log(err));
+};

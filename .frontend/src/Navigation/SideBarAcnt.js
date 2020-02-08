@@ -64,7 +64,6 @@ function SideBarAcnt(props) {
           </NavLink>
         </AcntItem>
       </AcntNav>
-      <Route exact path="/Profile" />
       <Route path="/Settings" />
     </AcntCont>
   );

@@ -89,7 +89,18 @@ const SignUp = ({ errors, touched, values, userSignup, history }) => {
             <span className="error"> {errors.username} </span>
           )}
           <label className="signup-label">
-            {" "}
+            <p> Company Name:: </p>
+          </label>
+          <Field
+            className="signup-field"
+            type="text"
+            name="company"
+            placeholder="company"
+          />
+          {touched.company && errors.company && (
+            <span className="error"> {errors.company} </span>
+          )}
+          <label className="signup-label">
             <p> Create Password: </p>
           </label>
           <Field
@@ -111,11 +122,12 @@ const SignUp = ({ errors, touched, values, userSignup, history }) => {
 };
 
 const FormikSignup = withFormik({
-  mapPropsToValues({ username, email, password }) {
+  mapPropsToValues({ username, company, password }) {
     return {
       username: username || "",
 
-      password: password || ""
+      password: password || "",
+      company: company || ""
     };
   },
 
@@ -127,6 +139,13 @@ const FormikSignup = withFormik({
       .max(24, "No more than 24 characters")
 
       .required("User Name is required"),
+    company: Yup.string()
+
+      .min(2, "Need at least 2 characters")
+
+      .max(24, "No more than 24 characters")
+
+      .required("Company Name is required"),
 
     password: Yup.string()
 

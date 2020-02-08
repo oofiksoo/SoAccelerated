@@ -3,8 +3,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Users = require("../users/users-model.js");
 const secrets = require("../config/secrets.js");
-// for endpoints beginning with /api/auth
-router.post("/register", (req, res) => {
+const RegEmail = require("./RegEmail.js");
+
+router.post("/register", RegEmail, (req, res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
     user.password = hash;
@@ -35,7 +36,7 @@ router.post("/login", (req, res) => {
                     userid: user.id
                 });
             } else {
-                res.status(401).json({ message: "You shall not pass!" });
+                res.status(401).json({ message: "Authentication Failed" });
             }
         })
         .catch(error => {
@@ -63,7 +64,7 @@ router.get("/logout", (req, res) => {
             if (err) {
                 res.status(500).json({ Error: err });
             } else {
-                res.status(200).json({ logged: "out" });
+                res.status(200).json({ message: " Logged out " });
             }
         });
     } else {
