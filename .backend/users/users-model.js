@@ -10,7 +10,7 @@ module.exports = {
 };
 
 function find() {
-    return db("users").select("id", "username");
+    return db("users").select("id", "username", "email", "company");
 }
 
 function findBy(filter) {
@@ -25,6 +25,7 @@ async function add(user) {
 
 function findById(id) {
     return db("users")
+        .select("id", "username", "email", "company")
         .where({ id })
         .first();
 }

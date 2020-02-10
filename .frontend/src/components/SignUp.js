@@ -89,6 +89,18 @@ const SignUp = ({ errors, touched, values, userSignup, history }) => {
             <span className="error"> {errors.username} </span>
           )}
           <label className="signup-label">
+            <p> Email Address: </p>{" "}
+          </label>
+          <Field
+            className="signup-field"
+            type="email"
+            name="email"
+            placeholder="email"
+          />
+          {touched.email && errors.email && (
+            <span className="error"> {errors.email} </span>
+          )}
+          <label className="signup-label">
             <p> Company Name:: </p>
           </label>
           <Field
@@ -122,11 +134,12 @@ const SignUp = ({ errors, touched, values, userSignup, history }) => {
 };
 
 const FormikSignup = withFormik({
-  mapPropsToValues({ username, company, password }) {
+  mapPropsToValues({ username, email, company, password }) {
     return {
       username: username || "",
 
       password: password || "",
+      email: email || "",
       company: company || ""
     };
   },

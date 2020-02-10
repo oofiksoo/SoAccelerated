@@ -5,16 +5,18 @@ exports.up = function(knex) {
             table.string("username").notNullable();
             table.string("password").notNullable();
             table.string("company").notNullable();
+            table.string("email").notNullable();
         })
-        .createTable("projects", table => {
-            table.increments();
-            table.string("project_name").notNullable();
-            table.string("project_description");
-            table
-                .boolean("completed")
-                .notNullable()
-                .defaultTo(0);
-        })
+
+    .createTable("projects", table => {
+        table.increments();
+        table.string("project_name").notNullable();
+        table.string("project_description");
+        table
+            .boolean("completed")
+            .notNullable()
+            .defaultTo(0);
+    })
 
     .createTable("tasks", table => {
         table.increments();
@@ -36,7 +38,6 @@ exports.up = function(knex) {
 
     .createTable("resources", table => {
         table.increments();
-
         table
             .string("resource_name")
             .notNullable()

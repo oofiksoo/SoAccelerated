@@ -103,7 +103,7 @@ router.get("/:id/image", (req, res) => {
 router.post("/:id/email", (req, res) => {
     const opportunitiyid = req.params.id;
     const email = req.body;
-    req.body.opportunitiyid = requestid;
+    req.body.opportunitiyid = opportunitiyid;
     Opportunities.insertEmail(req.body)
         .then(opportunitiesemail => {
             sgMail.setApiKey(secrets.sendgridkey);

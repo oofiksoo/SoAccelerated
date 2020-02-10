@@ -61,11 +61,30 @@ export const getProfile = id => dispatch => {
             res =>
             dispatch({
                 type: types.GET_PROFILE_SUCCESS,
-                payload: res.data
-            }) & console.log("Profile Data:", res.data)
+                payload: res.file
+            }) & console.log("Profile Data:", res)
         )
         .catch(err => {
             dispatch({ type: types.GET_PROFILE_FAILED, payload: err.res });
+        });
+};
+export const getProfilePic = id => dispatch => {
+    dispatch({ type: types.GET_PROFILE_PIC });
+    console.log("Get Profile PIC");
+    axiosWithAuth()
+        .get(`/users/${id}/image`)
+        .then(res => {
+            let image_as_base64 = URL.createObjectURL(res);
+            let image_as_files = res;
+            console.log(res);
+            dispatch({
+                type: types.GET_PROFILE_PIC_SUCCESS,
+                payload: image_as_base64
+            });
+            console.log("Profile Pic:", res);
+        })
+        .catch(err => {
+            dispatch({ type: types.GET_PROFILE_PIC_FAILED, payload: err.res });
         });
 };
 export const editProfile = (id, profileData, history) => dispatch => {

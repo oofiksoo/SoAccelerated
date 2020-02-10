@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import Styled from "styled-components";
 import { connect } from "react-redux";
+import { axiosWithAuthMultiForm } from "../utils/axiosWithAuthMultiForm";
 
-import { getProfile, editProfile } from "../actions/actionCreators";
+import {
+  getProfile,
+  editProfile,
+  getProfilePic
+} from "../actions/actionCreators";
 const ProfilePage = Styled.div`
 display:flex;
 align-self:center;
@@ -74,14 +79,52 @@ class Profile extends Component {
     super(props);
     this.state = {
       profiletransaction: false,
+      profilepictransaction: false,
       errors: [],
+      image_file: null,
+      image_preview: "",
       touched: [],
+      profile: [],
       values: []
     };
   }
   componentDidMount() {
     this.props.getProfile(this.props.userid);
+    //this.props.getProfilePic(this.props.userid);
+    console.log(this.props);
   }
+  handleSubmit = e => {
+    this.props.editProfile(this.props.userid);
+    this.handleSubmitFile();
+  };
+
+  handleImagePreview = e => {
+    let image_as_base64 = URL.createObjectURL(e.target.files[0]);
+    let image_as_files = e.target.files[0];
+
+    this.setState({
+      image_preview: image_as_base64,
+      image_file: [this.props.image_file, image_as_files]
+    });
+  };
+
+  // Image/File Submit Handler
+  handleSubmitFile = e => {
+    if (this.state.image_file !== null) {
+      e.preventDefault();
+      let image_file = new FormData();
+      image_file.append("file", this.state.image_file);
+
+      axiosWithAuthMultiForm()
+        .post(`/users/${this.props.userid}/image`, image_file)
+        .then(res => {
+          console.log(`Success` + res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
 
   render() {
     if (!this.props.profiletransaction) {
@@ -97,8 +140,25 @@ class Profile extends Component {
       <ProfilePage>
         <h2>Update profile settings below:</h2>
         <ProfileContainer>
-          <form className="profile-form">
-            <p>Username:{this.props.username}</p>
+          <form className="profile-form" onSubmit={this.handleSubmit}>
+            <div>
+              {/* image preview */}
+              <img src={this.state.image_preview} alt="image preview" />
+
+              {/* image input field */}
+              <input
+                type="file"
+                name="file"
+                onChange={this.handleImagePreview}
+              />
+              <label>Upload file</label>
+              <input
+                type="submit"
+                onClick={this.handleSubmitFile}
+                value="Submit"
+              />
+            </div>
+            <p>Username:{this.props.profile.username}</p>
             <label className="profile-label">
               <p> Company: </p>
             </label>
@@ -135,13 +195,20 @@ class Profile extends Component {
 
 const mapStateToProps = state => {
   return {
+    image_file: state.image_file,
+    image_preview: state.image_preview,
     username: state.username,
     profile: state.profile,
     userid: state.userid,
     logintransaction: state.logintransaction,
     projecttransaction: state.projecttransaction,
     profiletransaction: state.profiletransaction,
+    profilepictransaction: state.profiletransaction,
     token: state.token
   };
 };
-export default connect(mapStateToProps, { getProfile, editProfile })(Profile);
+export default connect(mapStateToProps, {
+  getProfile,
+  editProfile,
+  getProfilePic
+})(Profile);
